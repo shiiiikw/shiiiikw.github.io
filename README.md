@@ -10,6 +10,6 @@ Edit `index.html` for content and `style.css` for appearance. `publications.json
 
 ## Content sources
 
-Education, contact information, and the 2026 first/co-first-author conference highlights were provided by Kaiwen Shi. Paper titles and author order were checked against the current arXiv records on 2026-09-13. EACL/ACL publication records are linked directly in the page. SAGE's EMNLP 2026 acceptance follows the author's supplied information and public GitHub repository description. The ICML co-first-author paper's exact title remains to be supplied; the general achievement is included without assigning that role to an unconfirmed paper. Drift-Bench's ICML venue and BLURR's WWW Demo venue follow coauthor homepages.
+Education and contact information were provided by Kaiwen Shi. Publication titles and authors were checked against arXiv and the ACL Anthology; each paper links to its source. Google Scholar is linked from the coauthor homepage at https://jasonzhangzy1757.github.io/ . Confidence Laundering was added from https://arxiv.org/abs/2606.20662 .
 
-Research interests summarize the listed work. Papers by unrelated researchers with the same name have been excluded. No degree completion date, advisor, photograph, or unverified award is invented.
+SAGE’s EMNLP acceptance follows the author’s information and repository description. Drift-Bench’s ICML venue and BLURR’s WWW Demo venue follow coauthor homepages. Research interests summarize the listed work.
