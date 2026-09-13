@@ -16,4 +16,4 @@ SAGE’s EMNLP acceptance follows the author’s information and repository desc
 
 ## Travel map
 
-`travel.json` contains 40 visited cities or regions and three upcoming destinations supplied by Kaiwen Shi. Province/region markers represent the region approximately, not a visit to a particular city. The upcoming trip is October 20–31, 2026. `travel.js` renders the interactive map using locally hosted Leaflet 1.9.4 (BSD-2-Clause; license in assets/leaflet/LICENSE) and public-domain Natural Earth 1:110m country outlines (https://www.naturalearthdata.com/). The map makes no requests to a tile service.
+`travel.json` contains 39 visited cities or regions and three upcoming destinations supplied by Kaiwen Shi. Province/region markers represent the region approximately, not a visit to a particular city. The upcoming trip is October 20–31, 2026. `travel.js` renders the interactive map using locally hosted Leaflet 1.9.4 (BSD-2-Clause; license in assets/leaflet/LICENSE) and public-domain Natural Earth 1:110m country outlines (https://www.naturalearthdata.com/). The map makes no requests to a tile service.

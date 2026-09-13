@@ -1,7 +1,7 @@
 (async function () {
  const container=document.getElementById('travel-map'),status=document.getElementById('map-status');
  try {
-  const [world,places]=await Promise.all(['assets/world.json','travel.json'].map(async url=>{const r=await fetch(url);if(!r.ok)throw Error('Map data unavailable');return r.json()}));
+  const [world,places]=await Promise.all(['assets/world.json','travel.json?v=6'].map(async url=>{const r=await fetch(url);if(!r.ok)throw Error('Map data unavailable');return r.json()}));
   const map=L.map(container,{scrollWheelZoom:false,minZoom:0.25,maxZoom:10,zoomSnap:0.25,maxBounds:[[-80,-180],[85,180]],maxBoundsViscosity:0.8}).setView([35,10],2);
   L.geoJSON(world,{interactive:false,style:{color:'#bdcbd1',weight:0.7,fillColor:'#e6edf0',fillOpacity:1}}).addTo(map);
   map.attributionControl.setPrefix('<a href="https://leafletjs.com/">Leaflet</a>');map.attributionControl.addAttribution('<a href="https://www.naturalearthdata.com/">Natural Earth</a>');
