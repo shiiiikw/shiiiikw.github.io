@@ -1,47 +1,48 @@
 (async function () {
-  const container = document.getElementById('travel-map');
-  const status = document.getElementById('map-status');
-  try {
-    const results = await Promise.all(['assets/world.json', 'travel.json'].map(async url => {
-      const response = await fetch(url);
-      if (!response.ok) throw new Error('Map data unavailable');
-      return response.json();
-    }));
-    const [world, places] = results;
-    const map = L.map(container, {scrollWheelZoom:false, minZoom:0.25, maxZoom:10, zoomSnap:0.25, maxBounds:[[-80,-180],[85,180]],maxBoundsViscosity:0.8}).setView([35,10],2);
-    L.geoJSON(world, {interactive:false, style:{color:'#c4cdd1',weight:0.6,fillColor:'#e8edef',fillOpacity:1}}).addTo(map);
-    map.attributionControl.setPrefix('<a href="https://leafletjs.com/">Leaflet</a>');
-    map.attributionControl.addAttribution('<a href="https://www.naturalearthdata.com/">Natural Earth</a>');
-    const markers = places.map(p => {
-      const next = p.status === 'next';
-      const regional = p.kind !== 'City';
-      const marker = L.circleMarker([p.lat,p.lng], {radius:next?6:4.5,weight:1.7,color:next?'#ae641d':'#087daf',fillColor:regional?'#fff':next?'#ae641d':'#087daf',fillOpacity:1}).addTo(map);
-      const popup = document.createElement('div');
-      const title = document.createElement('strong'); title.textContent = p.name; popup.append(title,document.createElement('br'));
-      popup.append(document.createTextNode(p.group + (regional?' · '+p.kind+' (approximate location)':'')),document.createElement('br'));
-      popup.append(document.createTextNode(next?'Next trip · October 20–31, 2026':'Visited'));
-      marker.bindPopup(popup).bindTooltip(p.name,{direction:'top'});
-      if(next) marker.bringToFront();
-      return marker;
-    });
-    function setView(view) {
-      const selected = places.filter(p => view==='all' || (view==='next'&&p.status==='next') || (view==='us'&&p.group==='United States') || (view==='asia'&&['China','Japan'].includes(p.group)) || (view==='west'&& !['China','Japan','United States'].includes(p.group)));
-      map.closePopup();
-      map.fitBounds(selected.map(p=>[p.lat,p.lng]),{padding:[28,28],maxZoom:5,animate:false});
-      document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===view)));
+ const container=document.getElementById('travel-map'),status=document.getElementById('map-status');
+ try {
+  const [world,places]=await Promise.all(['assets/world.json','travel.json'].map(async url=>{const r=await fetch(url);if(!r.ok)throw Error('Map data unavailable');return r.json()}));
+  const map=L.map(container,{scrollWheelZoom:false,minZoom:0.25,maxZoom:10,zoomSnap:0.25,maxBounds:[[-80,-180],[85,180]],maxBoundsViscosity:0.8}).setView([35,10],2);
+  L.geoJSON(world,{interactive:false,style:{color:'#bdcbd1',weight:0.7,fillColor:'#e6edf0',fillOpacity:1}}).addTo(map);
+  map.attributionControl.setPrefix('<a href="https://leafletjs.com/">Leaflet</a>');map.attributionControl.addAttribution('<a href="https://www.naturalearthdata.com/">Natural Earth</a>');
+  const markers=places.map(p=>{
+   const color=p.status==='next'?'#b95c15':'#057bad';
+   const m=L.circleMarker([p.lat,p.lng],{radius:5,weight:1.5,color:'#fff',fillColor:color,fillOpacity:1}).addTo(map);
+   const box=document.createElement('div'),title=document.createElement('strong');title.textContent=p.name;box.append(title,document.createElement('br'),document.createTextNode(p.group+(p.kind==='City'?'':' · '+p.kind)),document.createElement('br'),document.createTextNode(p.status==='next'?'October 20–31, 2026':'Visited'));
+   m.bindPopup(box);return m;
+  });
+  const overlay=document.createElement('div');overlay.className='map-labels';container.append(overlay);L.DomEvent.disableClickPropagation(overlay);
+  const lines=document.createElementNS('http://www.w3.org/2000/svg','svg');lines.classList.add('map-leaders');lines.setAttribute('aria-hidden','true');overlay.append(lines);
+  const labels=places.map((p,i)=>{const b=document.createElement('button');b.type='button';b.className='map-place-label'+(p.status==='next'?' upcoming':'');b.textContent=p.name;b.setAttribute('aria-label',p.name+', '+p.group+(p.status==='next'?', next trip':', visited'));b.addEventListener('click',()=>markers[i].openPopup());overlay.append(b);return b});
+  let active=places.map((_,i)=>i);
+  function layoutLabels(){
+   const size=map.getSize();lines.setAttribute('viewBox',`0 0 ${size.x} ${size.y}`);lines.replaceChildren();
+   labels.forEach(b=>b.hidden=true);
+   const occupied=[{x:0,y:0,w:52,h:86},{x:size.x-180,y:size.y-25,w:180,h:25}];
+   const points=active.map(i=>({i,p:map.latLngToContainerPoint([places[i].lat,places[i].lng])})).filter(({p})=>p.x>8&&p.x<size.x-8&&p.y>8&&p.y<size.y-8);
+   const overlap=(a,b)=>a.x<b.x+b.w+4&&a.x+a.w+4>b.x&&a.y<b.y+b.h+3&&a.y+a.h+3>b.y;
+   for(const {i,p} of points){
+    const label=labels[i];label.hidden=false;const w=label.offsetWidth,h=label.offsetHeight;let best=null;
+    for(let radius=12;radius<=420&&!best;radius+=10){
+     for(let j=0;j<24;j++){const a=j*Math.PI/12,x=p.x+Math.cos(a)*radius-w/2,y=p.y+Math.sin(a)*radius-h/2;const rect={x,y,w,h};
+      if(x<7||y<7||x+w>size.x-7||y+h>size.y-26||occupied.some(r=>overlap(rect,r))||points.some(q=>overlap(rect,{x:q.p.x-5,y:q.p.y-5,w:10,h:10})))continue;
+      best=rect;break;
+     }
     }
-    setView('all');
-    document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>setView(b.dataset.view)));
-    document.querySelectorAll('[data-place]').forEach(b=>b.addEventListener('click',()=>{
-      const i=Number(b.dataset.place),p=places[i];
-      map.setView([p.lat,p.lng],p.kind==='City'?7:4,{animate:false});markers[i].openPopup();
-      document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed','false'));
-      container.scrollIntoView({block:'center',behavior:'auto'});
-    }));
-    new ResizeObserver(()=>map.invalidateSize()).observe(container);
-  } catch(error) {
-    status.textContent='The map could not load. The full list of places is available below.';
-    document.querySelectorAll('.map-tools button').forEach(b=>b.disabled=true);
-    document.querySelector('.travel-list').open=true;
+    if(!best){label.hidden=true;continue}occupied.push(best);label.style.left=best.x+'px';label.style.top=best.y+'px';
+    const x=Math.max(best.x,Math.min(p.x,best.x+w)),y=Math.max(best.y,Math.min(p.y,best.y+h));
+    const line=document.createElementNS('http://www.w3.org/2000/svg','line');line.setAttribute('x1',p.x);line.setAttribute('y1',p.y);line.setAttribute('x2',x);line.setAttribute('y2',y);line.setAttribute('stroke',places[i].status==='next'?'#b95c15':'#43869e');lines.append(line);
+   }
   }
+  function setView(view){
+   active=places.map((p,i)=>({p,i})).filter(({p})=>view==='all'||view==='next'&&p.status==='next'||view==='us'&&p.group==='United States'||view==='asia'&&['China','Japan'].includes(p.group)||view==='west'&&!['China','Japan','United States'].includes(p.group)).map(x=>x.i);
+   map.closePopup();map.fitBounds(active.map(i=>[places[i].lat,places[i].lng]),{padding:[55,65],maxZoom:5,animate:false});
+   document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===view)));layoutLabels();
+  }
+  map.on('moveend zoomend resize',layoutLabels);map.on('movestart',()=>overlay.style.visibility='hidden');map.on('moveend',()=>overlay.style.visibility='visible');
+  document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>setView(b.dataset.view)));
+  document.querySelector('.travel-list').hidden=true;
+  new ResizeObserver(()=>{map.invalidateSize();layoutLabels()}).observe(container);
+  setView('all');
+ } catch(e){status.textContent='The map could not load. Please refresh to try again.';document.querySelectorAll('.map-tools button').forEach(b=>b.disabled=true);document.querySelector('.travel-list').open=true;}
 }());
