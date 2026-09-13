@@ -6,7 +6,7 @@
   L.geoJSON(world,{interactive:false,style:{color:'#bdcbd1',weight:0.7,fillColor:'#e6edf0',fillOpacity:1}}).addTo(map);
   map.attributionControl.setPrefix('<a href="https://leafletjs.com/">Leaflet</a>');map.attributionControl.addAttribution('<a href="https://www.naturalearthdata.com/">Natural Earth</a>');
   const markers=places.map(p=>{
-   const color=p.status==='next'?'#b95c15':'#057bad';
+   const color=p.status==='next'?'#ae9142':'#0c2340';
    const m=L.circleMarker([p.lat,p.lng],{radius:5,weight:1.5,color:'#fff',fillColor:color,fillOpacity:1}).addTo(map);
    const box=document.createElement('div'),title=document.createElement('strong');title.textContent=p.name;box.append(title,document.createElement('br'),document.createTextNode(p.group+(p.kind==='City'?'':' · '+p.kind)),document.createElement('br'),document.createTextNode(p.status==='next'?'October 20–31, 2026':'Visited'));
    m.bindPopup(box);return m;
@@ -31,7 +31,7 @@
     }
     if(!best){label.hidden=true;continue}occupied.push(best);label.style.left=best.x+'px';label.style.top=best.y+'px';
     const x=Math.max(best.x,Math.min(p.x,best.x+w)),y=Math.max(best.y,Math.min(p.y,best.y+h));
-    const line=document.createElementNS('http://www.w3.org/2000/svg','line');line.setAttribute('x1',p.x);line.setAttribute('y1',p.y);line.setAttribute('x2',x);line.setAttribute('y2',y);line.setAttribute('stroke',places[i].status==='next'?'#b95c15':'#43869e');lines.append(line);
+    const line=document.createElementNS('http://www.w3.org/2000/svg','line');line.setAttribute('x1',p.x);line.setAttribute('y1',p.y);line.setAttribute('x2',x);line.setAttribute('y2',y);line.setAttribute('stroke',places[i].status==='next'?'#ae9142':'#546b86');lines.append(line);
    }
   }
   function setView(view){
