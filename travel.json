@@ -1,0 +1,346 @@
+[
+  {
+    "name": "London",
+    "lat": 51.5074,
+    "lng": -0.1278,
+    "group": "United Kingdom",
+    "kind": "City",
+    "status": "visited"
+  },
+  {
+    "name": "Dartmouth",
+    "lat": 50.351,
+    "lng": -3.579,
+    "group": "United Kingdom",
+    "kind": "City",
+    "status": "visited"
+  },
+  {
+    "name": "Cambridge",
+    "lat": 52.2053,
+    "lng": 0.1218,
+    "group": "United Kingdom",
+    "kind": "City",
+    "status": "visited"
+  },
+  {
+    "name": "Oxford",
+    "lat": 51.752,
+    "lng": -1.2577,
+    "group": "United Kingdom",
+    "kind": "City",
+    "status": "visited"
+  },
+  {
+    "name": "Los Angeles",
+    "lat": 34.0522,
+    "lng": -118.2437,
+    "group": "United States",
+    "kind": "City",
+    "status": "visited"
+  },
+  {
+    "name": "Santa Barbara",
+    "lat": 34.4208,
+    "lng": -119.6982,
+    "group": "United States",
+    "kind": "City",
+    "status": "visited"
+  },
+  {
+    "name": "San Francisco",
+    "lat": 37.7749,
+    "lng": -122.4194,
+    "group": "United States",
+    "kind": "City",
+    "status": "visited"
+  },
+  {
+    "name": "Chicago",
+    "lat": 41.8781,
+    "lng": -87.6298,
+    "group": "United States",
+    "kind": "City",
+    "status": "visited"
+  },
+  {
+    "name": "Cleveland",
+    "lat": 41.4993,
+    "lng": -81.6944,
+    "group": "United States",
+    "kind": "City",
+    "status": "visited"
+  },
+  {
+    "name": "New York City",
+    "lat": 40.7128,
+    "lng": -74.006,
+    "group": "United States",
+    "kind": "City",
+    "status": "visited"
+  },
+  {
+    "name": "Minneapolis",
+    "lat": 44.9778,
+    "lng": -93.265,
+    "group": "United States",
+    "kind": "City",
+    "status": "visited"
+  },
+  {
+    "name": "Madison",
+    "lat": 43.0731,
+    "lng": -89.4012,
+    "group": "United States",
+    "kind": "City",
+    "status": "visited"
+  },
+  {
+    "name": "Reykjavík",
+    "lat": 64.1466,
+    "lng": -21.9426,
+    "group": "Iceland",
+    "kind": "City",
+    "status": "visited"
+  },
+  {
+    "name": "Madrid",
+    "lat": 40.4168,
+    "lng": -3.7038,
+    "group": "Spain",
+    "kind": "City",
+    "status": "visited"
+  },
+  {
+    "name": "Barcelona",
+    "lat": 41.3851,
+    "lng": 2.1734,
+    "group": "Spain",
+    "kind": "City",
+    "status": "visited"
+  },
+  {
+    "name": "Toledo",
+    "lat": 39.8628,
+    "lng": -4.0273,
+    "group": "Spain",
+    "kind": "City",
+    "status": "visited"
+  },
+  {
+    "name": "Seville",
+    "lat": 37.3891,
+    "lng": -5.9845,
+    "group": "Spain",
+    "kind": "City",
+    "status": "visited"
+  },
+  {
+    "name": "Porto",
+    "lat": 41.1579,
+    "lng": -8.6291,
+    "group": "Portugal",
+    "kind": "City",
+    "status": "visited"
+  },
+  {
+    "name": "Lisbon",
+    "lat": 38.7223,
+    "lng": -9.1393,
+    "group": "Portugal",
+    "kind": "City",
+    "status": "visited"
+  },
+  {
+    "name": "Paris",
+    "lat": 48.8566,
+    "lng": 2.3522,
+    "group": "France",
+    "kind": "City",
+    "status": "visited"
+  },
+  {
+    "name": "Casablanca",
+    "lat": 33.5731,
+    "lng": -7.5898,
+    "group": "Morocco",
+    "kind": "City",
+    "status": "visited"
+  },
+  {
+    "name": "Rabat",
+    "lat": 34.0209,
+    "lng": -6.8416,
+    "group": "Morocco",
+    "kind": "City",
+    "status": "visited"
+  },
+  {
+    "name": "Istanbul",
+    "lat": 41.0082,
+    "lng": 28.9784,
+    "group": "Türkiye",
+    "kind": "City",
+    "status": "visited"
+  },
+  {
+    "name": "Dubai",
+    "lat": 25.2048,
+    "lng": 55.2708,
+    "group": "United Arab Emirates",
+    "kind": "City",
+    "status": "visited"
+  },
+  {
+    "name": "Kyoto",
+    "lat": 35.0116,
+    "lng": 135.7681,
+    "group": "Japan",
+    "kind": "City",
+    "status": "visited"
+  },
+  {
+    "name": "Osaka",
+    "lat": 34.6937,
+    "lng": 135.5023,
+    "group": "Japan",
+    "kind": "City",
+    "status": "visited"
+  },
+  {
+    "name": "Kobe",
+    "lat": 34.6901,
+    "lng": 135.1956,
+    "group": "Japan",
+    "kind": "City",
+    "status": "visited"
+  },
+  {
+    "name": "Shandong",
+    "lat": 36.4,
+    "lng": 118,
+    "group": "China",
+    "kind": "Province",
+    "status": "visited"
+  },
+  {
+    "name": "Beijing",
+    "lat": 39.9042,
+    "lng": 116.4074,
+    "group": "China",
+    "kind": "City",
+    "status": "visited"
+  },
+  {
+    "name": "Shanghai",
+    "lat": 31.2304,
+    "lng": 121.4737,
+    "group": "China",
+    "kind": "City",
+    "status": "visited"
+  },
+  {
+    "name": "Shenzhen",
+    "lat": 22.5431,
+    "lng": 114.0579,
+    "group": "China",
+    "kind": "City",
+    "status": "visited"
+  },
+  {
+    "name": "Hong Kong",
+    "lat": 22.3193,
+    "lng": 114.1694,
+    "group": "China",
+    "kind": "City",
+    "status": "visited"
+  },
+  {
+    "name": "Macao",
+    "lat": 22.1987,
+    "lng": 113.5439,
+    "group": "China",
+    "kind": "City",
+    "status": "visited"
+  },
+  {
+    "name": "Xinjiang",
+    "lat": 41.8,
+    "lng": 85.6,
+    "group": "China",
+    "kind": "Region",
+    "status": "visited"
+  },
+  {
+    "name": "Inner Mongolia",
+    "lat": 44,
+    "lng": 113,
+    "group": "China",
+    "kind": "Region",
+    "status": "visited"
+  },
+  {
+    "name": "Yunnan",
+    "lat": 25,
+    "lng": 101.5,
+    "group": "China",
+    "kind": "Province",
+    "status": "visited"
+  },
+  {
+    "name": "Guangxi",
+    "lat": 23.8,
+    "lng": 108.3,
+    "group": "China",
+    "kind": "Region",
+    "status": "visited"
+  },
+  {
+    "name": "Heilongjiang",
+    "lat": 47.5,
+    "lng": 128,
+    "group": "China",
+    "kind": "Province",
+    "status": "visited"
+  },
+  {
+    "name": "Hangzhou",
+    "lat": 30.2741,
+    "lng": 120.1551,
+    "group": "China",
+    "kind": "City",
+    "status": "visited"
+  },
+  {
+    "name": "Xiamen",
+    "lat": 24.4798,
+    "lng": 118.0894,
+    "group": "China",
+    "kind": "City",
+    "status": "visited"
+  },
+  {
+    "name": "Copenhagen",
+    "lat": 55.6761,
+    "lng": 12.5683,
+    "group": "Denmark",
+    "kind": "City",
+    "status": "next"
+  },
+  {
+    "name": "Budapest",
+    "lat": 47.4979,
+    "lng": 19.0402,
+    "group": "Hungary",
+    "kind": "City",
+    "status": "next"
+  },
+  {
+    "name": "Belgrade",
+    "lat": 44.7866,
+    "lng": 20.4489,
+    "group": "Serbia",
+    "kind": "City",
+    "status": "next"
+  }
+]
